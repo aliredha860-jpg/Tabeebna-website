@@ -35,7 +35,7 @@ jobs:
         # a custom domain). Once tabeebna.bh is connected via CNAME, delete
         # this env line entirely.
         env:
-          PATH_PREFIX: "/tabeebna-website/"
+          PATH_PREFIX: "/Tabeebna-website/"
         run: npx @11ty/eleventy
 
       - name: Upload artifact
