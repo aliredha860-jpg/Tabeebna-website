@@ -1,0 +1,394 @@
+/* ==========================================================================
+   Tabeebna — design tokens
+   Palette: Ink Navy (bg/dark), Harbor Blue (secondary), Signal Gold (accent),
+   Mist + Stone (warm neutrals, echo the Bahrain skyline in the logo)
+   Type: Fraunces (display, used sparingly) / Inter (body+nav) /
+         IBM Plex Mono (small tracked labels — deadlines, categories)
+   Signature: a stethoscope-tube line motif used as a section divider
+   ========================================================================== */
+
+:root {
+  --ink: #252D41;
+  --harbor: #3E5C7E;
+  --gold: #F9B03C;
+  --mist: #DCD4D0;
+  --stone: #C8BBB6;
+  --paper: #FBF9F5;
+  --ink-80: rgba(37, 45, 65, 0.8);
+  --ink-10: rgba(37, 45, 65, 0.08);
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius: 14px;
+  --wrap: 1120px;
+  --shadow-card: 0 1px 2px rgba(37,45,65,0.06), 0 8px 24px rgba(37,45,65,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Intentionally not auto-switching to a dark theme — brand navy already
+     anchors the header/footer/hero, and a fully dark body would wash out
+     the warm neutral cards. Kept as a documented decision, not an oversight. */
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--harbor); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 10px 16px;
+  z-index: 100;
+  font-weight: 600;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+p { margin: 0 0 1em; }
+.lede { font-size: 1.15rem; color: var(--ink-80); max-width: 60ch; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--harbor);
+  margin: 0 0 0.6em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--gold); color: var(--ink); }
+.btn-primary:hover { background: #ffbd52; color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--paper); border-color: rgba(251,249,245,0.4); }
+.btn-ghost:hover { background: rgba(251,249,245,0.12); color: var(--paper); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--ink-10); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 6px;
+}
+.brand__mark { height: 64px; width: auto; }
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+.nav a {
+  color: var(--mist);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--paper);
+  border-bottom-color: var(--gold);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--paper);
+  display: block;
+}
+
+/* ==========================================================================
+   Signature element: stethoscope-line divider
+   ========================================================================== */
+.steth-divider {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: 0;
+}
+.steth-divider path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.steth-divider circle { fill: var(--gold); }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+  padding-block: 64px 0;
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 72px;
+}
+.hero .eyebrow { color: var(--gold); }
+.hero h1 { color: var(--paper); max-width: 16ch; }
+.hero .lede { color: rgba(251,249,245,0.82); }
+.hero__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.skyline {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
+.skyline path { fill: var(--harbor); opacity: 0.35; }
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.section {
+  padding-block: 64px;
+}
+.section--mist { background: var(--mist); }
+.section-head { max-width: 62ch; margin-bottom: 36px; }
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.card {
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(37,45,65,0.06);
+}
+
+/* ==========================================================================
+   Opportunity cards
+   ========================================================================== */
+.opportunities-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.opportunity-card {
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(37,45,65,0.06);
+  display: flex;
+  flex-direction: column;
+}
+.opportunity-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.opportunity-card__category {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.opportunity-card__deadline {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--harbor);
+  white-space: nowrap;
+}
+.opportunity-card h3 { margin-bottom: 8px; }
+.opportunity-card p { color: var(--ink-80); flex-grow: 1; }
+.opportunity-card .btn { margin-top: 14px; align-self: flex-start; }
+
+.empty-state {
+  border: 1.5px dashed var(--stone);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  color: var(--ink-80);
+}
+
+/* ==========================================================================
+   Team
+   ========================================================================== */
+.team-card { text-align: left; }
+.team-card__photo {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  background: var(--stone);
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+.team-card__role {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--harbor);
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.contact-list a { font-size: 1.05rem; font-weight: 600; }
+.contact-list li { display: flex; align-items: center; gap: 12px; }
+.contact-list .icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--harbor); }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--ink);
+  color: var(--mist);
+  padding-block: 48px 20px;
+  margin-top: 80px;
+}
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(251,249,245,0.14);
+}
+.footer-mark { height: 168px; width: auto; margin-bottom: 32px; }
+.site-footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.site-footer__col a { color: var(--mist); text-decoration: none; }
+.site-footer__col a:hover { color: var(--gold); }
+.icon-link { display: flex; align-items: center; gap: 10px; }
+.icon-link .icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--gold); }
+.site-footer p { color: rgba(220,212,208,0.75); font-size: 0.92rem; }
+.fine-print { font-size: 0.8rem; color: rgba(220,212,208,0.55); margin-top: 18px; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 860px) {
+  .grid--3 { grid-template-columns: 1fr 1fr; }
+  .site-footer__inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .nav-toggle { display: flex; }
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav--open { max-height: 400px; }
+  .nav a {
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(251,249,245,0.08);
+    width: 100%;
+  }
+  .grid--3, .grid--2 { grid-template-columns: 1fr; }
+  .site-footer__inner { grid-template-columns: 1fr; }
+  .hero { padding-block: 40px 0; }
+  .section { padding-block: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn:hover { transform: none; }
+  * { transition: none !important; }
+}

@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Programs & Opportunities
+description: Current internships, workshops, and events open to high school students in Bahrain.
+---
+<section class="section" style="padding-top:48px">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Programs &amp; Opportunities</p>
+      <h1>Find your next opportunity</h1>
+      <p class="lede">Every internship, workshop, and event we're currently running, sorted by application deadline — soonest first.</p>
+    </div>
+
+    {% if opportunities.length > 0 %}
+      <div class="opportunities-list">
+        {% for item in opportunities %}
+          <article class="opportunity-card">
+            <div class="opportunity-card__top">
+              <span class="opportunity-card__category">{{ item.category }}</span>
+              <span class="opportunity-card__deadline">Due {{ item.deadline | niceDate }}</span>
+            </div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <a class="btn btn-outline" href="{{ item.applyLink }}" target="_blank" rel="noopener">Apply</a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>No opportunities are posted right now — check back soon.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section--mist">
+  <div class="wrap grid grid--2">
+    <div>
+      <p class="eyebrow">For members</p>
+      <h2>Adding a new listing</h2>
+      <p class="lede">Every card above comes straight from a JSON file in the <code>/opportunities</code> folder in our GitHub repo — no code editing required. Copy <code>_template.json</code>, fill in the blanks, and save. Full instructions are in that folder's README.</p>
+    </div>
+  </div>
+</section>

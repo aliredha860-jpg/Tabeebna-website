@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Page not found
+description: This page doesn't exist.
+permalink: /404.html
+---
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap hero__inner" style="padding-bottom:88px; text-align:center">
+    <p class="eyebrow" style="justify-content:center">404</p>
+    <h1 style="max-width:none">This page took a wrong turn somewhere.</h1>
+    <p class="lede" style="max-width:56ch; margin-inline:auto">The page you're looking for doesn't exist — it may have moved, or the link might be out of date.</p>
+    <div class="hero__actions" style="justify-content:center">
+      <a class="btn btn-primary" href="{{ '/' | url }}">Back to home</a>
+      <a class="btn btn-ghost" href="{{ '/programs/' | url }}">See opportunities</a>
+    </div>
+  </div>
+  {% include "skyline.njk" %}
+</section>

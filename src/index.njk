@@ -1,0 +1,74 @@
+---
+layout: base.njk
+title: Home
+description: Tabeebna is a Bahrain-based student-run nonprofit helping high school students explore career paths through internships, events, and workshops.
+---
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="eyebrow">Student-run · Manama, Bahrain</p>
+    <h1>Helping Bahrain's students discover the career path that fits them.</h1>
+    <p class="lede">Tabeebna connects high schoolers with internships, career-exposure events, and workshops led by students who've walked the same path — giving them a clearer, more confident view of what their future career could look like.</p>
+    <div class="hero__actions">
+      <a class="btn btn-primary" href="{{ '/programs/' | url }}">See open opportunities</a>
+      <a class="btn btn-ghost" href="{{ '/apply/' | url }}">Apply now</a>
+    </div>
+  </div>
+  {% include "skyline.njk" %}
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {% include "steth-divider.njk" %}
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Right now</p>
+      <h2>Applications are open</h2>
+      <p class="lede">Check the Programs page for current deadlines — new internships and workshops are added throughout the year.</p>
+    </div>
+
+    {% if opportunities.length > 0 %}
+      <div class="opportunities-list">
+        {% for item in opportunities | limit(3) %}
+          <article class="opportunity-card">
+            <div class="opportunity-card__top">
+              <span class="opportunity-card__category">{{ item.category }}</span>
+              <span class="opportunity-card__deadline">Due {{ item.deadline | niceDate }}</span>
+            </div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <a class="btn btn-outline" href="{{ item.applyLink }}" target="_blank" rel="noopener">Apply</a>
+          </article>
+        {% endfor %}
+      </div>
+      <p style="margin-top:24px"><a href="{{ '/programs/' | url }}">See all opportunities →</a></p>
+    {% else %}
+      <div class="empty-state">
+        <p>Nothing posted yet — check back soon, or see <a href="{{ '/programs/' | url }}">the Programs page</a>.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section--mist">
+  <div class="wrap grid grid--3">
+    <div class="card">
+      <p class="eyebrow">01 — Explore</p>
+      <h3>Shadow real professionals</h3>
+      <p>Spend time inside real workplaces across Bahrain — from hospitals to studios to startups — guided by students who've already been there.</p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">02 — Learn</p>
+      <h3>Hands-on workshops</h3>
+      <p>Practical skill sessions and honest talks about what different careers actually look like day to day.</p>
+    </div>
+    <div class="card">
+      <p class="eyebrow">03 — Connect</p>
+      <h3>A community, not just a program</h3>
+      <p>Meet other students figuring out the same path, and mentors who remember being exactly where you are.</p>
+    </div>
+  </div>
+</section>
