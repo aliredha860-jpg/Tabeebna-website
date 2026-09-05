@@ -248,6 +248,15 @@ p { margin: 0 0 1em; }
   border: 1px solid rgba(37,45,65,0.06);
 }
 
+/* Navy variant - used where a card needs to sit on the dark brand color
+   instead of the default light paper background (e.g. Apply page roles) */
+.card--dark {
+  background: var(--ink);
+  border-color: rgba(251,249,245,0.12);
+}
+.card--dark h3 { color: var(--paper); }
+.card--dark p { color: rgba(251,249,245,0.75); }
+
 /* ==========================================================================
    Opportunity cards
    ========================================================================== */
